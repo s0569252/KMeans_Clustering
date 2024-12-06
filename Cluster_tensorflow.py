@@ -32,26 +32,6 @@ df = pd.read_csv('Mall_Customers.csv')
 # 1. Segmentation using Age and Spending Score
 X1 = df[['Age', 'Spending Score (1-100)']].values
 
-# Elbow method for optimal number of clusters
-def plot_elbow_method(X, max_k=10):
-    distortions = []
-    for k in range(1, max_k + 1):
-        labels, centroids = kmeans_tf(X, n_clusters=k)
-        # Calculate the distortion (sum of squared distances to centroids)
-        distances = tf.norm(tf.cast(tf.expand_dims(X, 1) - centroids[labels], tf.float32), axis=2)
-        distortion = tf.reduce_sum(tf.square(distances)).numpy()  # Squared distances
-        distortions.append(distortion)
-    
-    # Plotting the elbow curve
-    plt.figure(figsize=(8, 6))
-    plt.plot(range(1, max_k + 1), distortions, marker='o')
-    plt.title('Elbow Method for Optimal Number of Clusters')
-    plt.xlabel('Number of Clusters')
-    plt.ylabel('Distortion (Sum of Squared Distances)')
-    plt.show()
-
-# Visualizing the elbow method for Age and Spending Score data
-plot_elbow_method(X1)
 
 # Performing KMeans clustering with the optimal number of clusters (based on elbow method)
 optimal_clusters = 4  # Change this value based on the elbow plot

@@ -1,4 +1,3 @@
-# %%
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,27 +5,18 @@ import seaborn as sns
 import plotly as py
 import plotly.graph_objs as go
 from sklearn.cluster import KMeans
+import warnings
+import os
+warnings.filterwarnings("ignore")
 
 df = pd.read_csv('Mall_Customers.csv')
 df.head()
 
-print(df)
-
 "1.Segmentation using Age and Spending Score"
 '''Age and spending Score'''
 X1 = df[['Age' , 'Spending Score (1-100)']].iloc[: , :].values
-inertia = []
-for n in range(1 , 11):
-    algorithm = (KMeans(n_clusters = n ,init='k-means++', n_init = 10 ,max_iter=300, 
-                        tol=0.0001,  random_state= 111  , algorithm='elkan') )
-    algorithm.fit(X1)
-    inertia.append(algorithm.inertia_)
 
-plt.figure(1 , figsize = (15 ,6))
-plt.plot(np.arange(1 , 11) , inertia , 'o')
-plt.plot(np.arange(1 , 11) , inertia , '-' , alpha = 0.5)
-plt.xlabel('Number of Clusters') , plt.ylabel('Inertia')
-plt.show()
+# Removed the elbow graph section for X1
 
 algorithm = (KMeans(n_clusters = 4 ,init='k-means++', n_init = 10 ,max_iter=300, 
                         tol=0.0001,  random_state= 111  , algorithm='elkan') )
@@ -57,18 +47,8 @@ plt.show()
 "2. Segmentation using Annual Income and Spending Score"
 '''Annual Income and spending Score'''
 X2 = df[['Annual Income (k$)' , 'Spending Score (1-100)']].iloc[: , :].values
-inertia = []
-for n in range(1 , 11):
-    algorithm = (KMeans(n_clusters = n ,init='k-means++', n_init = 10 ,max_iter=300, 
-                        tol=0.0001,  random_state= 111  , algorithm='elkan') )
-    algorithm.fit(X2)
-    inertia.append(algorithm.inertia_)
 
-plt.figure(1 , figsize = (15 ,6))
-plt.plot(np.arange(1 , 11) , inertia , 'o')
-plt.plot(np.arange(1 , 11) , inertia , '-' , alpha = 0.5)
-plt.xlabel('Number of Clusters') , plt.ylabel('Inertia')
-plt.show()
+# Removed the elbow graph section for X2
 
 algorithm = (KMeans(n_clusters = 5 ,init='k-means++', n_init = 10 ,max_iter=300, 
                         tol=0.0001,  random_state= 111  , algorithm='elkan') )
@@ -97,18 +77,8 @@ plt.show()
 
 "3.Segmentation using Age , Annual Income and Spending Score"
 X3 = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].iloc[: , :].values
-inertia = []
-for n in range(1 , 11):
-    algorithm = (KMeans(n_clusters = n ,init='k-means++', n_init = 10 ,max_iter=300, 
-                        tol=0.0001,  random_state= 111  , algorithm='elkan') )
-    algorithm.fit(X3)
-    inertia.append(algorithm.inertia_)
 
-plt.figure(1 , figsize = (15 ,6))
-plt.plot(np.arange(1 , 11) , inertia , 'o')
-plt.plot(np.arange(1 , 11) , inertia , '-' , alpha = 0.5)
-plt.xlabel('Number of Clusters') , plt.ylabel('Inertia')
-plt.show()
+# Removed the elbow graph section for X3
 
 algorithm = (KMeans(n_clusters = 6 ,init='k-means++', n_init = 10 ,max_iter=300, 
                         tol=0.0001,  random_state= 111  , algorithm='elkan') )
@@ -134,12 +104,6 @@ trace1 = go.Scatter3d(
 )
 data = [trace1]
 layout = go.Layout(
-#     margin=dict(
-#         l=0,
-#         r=0,
-#         b=0,
-#         t=0
-#     )
     title= 'Clusters',
     scene = dict(
             xaxis = dict(title  = 'Age'),
