@@ -18,7 +18,7 @@ X1 = df[['Age' , 'Spending Score (1-100)']].iloc[: , :].values
 
 # Removed the elbow graph section for X1
 
-algorithm = (KMeans(n_clusters = 4 ,init='k-means++', n_init = 10 ,max_iter=300, 
+algorithm = (KMeans(n_clusters = 4 ,init='k-means++', n_init = 10 ,max_iter=100, 
                         tol=0.0001,  random_state= 111  , algorithm='elkan') )
 algorithm.fit(X1)
 labels1 = algorithm.labels_

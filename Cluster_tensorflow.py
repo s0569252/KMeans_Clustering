@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Function to perform KMeans clustering using TensorFlow
-def kmeans_tf(X, n_clusters=4, n_iterations=300, tol=0.0001):
+def kmeans_tf(X, n_clusters=4, n_iterations=100, tol=0.0001):
     n_samples, n_features = X.shape
     X = tf.Variable(X, dtype=tf.float32)
 
