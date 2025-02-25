@@ -45,7 +45,7 @@ plt.figure(1, figsize=(15, 7))
 plt.scatter(X1[:, 0], X1[:, 1], c=labels1, s=200, cmap='Pastel2')
 plt.scatter(centroids1[:, 0], centroids1[:, 1], s=300, c='red', alpha=0.5)
 plt.xlabel('Age')
-plt.ylabel('Spending Score (1-300)')
+plt.ylabel('Spending Score (1-100)')
 plt.title('Clustering by Age and Spending Score')
 plt.show()
 
